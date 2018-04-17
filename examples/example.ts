@@ -1,0 +1,53 @@
+import * as express from 'express'
+import * as builder from 'botbuilder'
+
+import { WechatyConnector } from '../src/wechaty-connector'
+
+// Create http server
+const app = express()
+
+// Create wechaty connector
+const wechatyConnector = new WechatyConnector()
+
+const bot = new builder.UniversalBot(wechatyConnector)
+
+// Bot dialogs
+bot.dialog('/', [
+  function (session) {
+      if (session.userData && session.userData.name) {
+        /*
+        if (session.message.attachments &&
+          session.message.attachments.length > 0) {
+          var atm = session.message.attachments[0];
+          if (atm.contentType == connector.WechatAttachmentType.Image) {
+            var msg = new builder.Message(session).attachments([atm]);
+            session.send(msg);
+          }
+        }
+        */
+        session.send('How are you, ' + session.userData.name)
+      } else {
+        builder.Prompts.text(session, 'Whats your name?')
+      }
+  },
+  function (session, results) {
+      session.userData.name = results.response
+      session.send('OK, ' + session.userData.name)
+      builder.Prompts.text(session, 'Whats your age?')
+  },
+  function (session, results) {
+      session.userData.age = results.response
+      session.send('All right, ' + results.response)
+  },
+])
+
+app.get('*', function(req, res) {
+  res.send('Hello Wechaty Bot')
+})
+
+// Start listen on port
+app.listen(process.env.port || 9090, function() {
+  console.log('server is running.')
+})
+
+wechatyConnector.listen()
