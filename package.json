@@ -1,0 +1,19 @@
+{
+  "name": "botbuilder-wechaty-connector",
+  "version": "0.0.1",
+  "description": "Microsoft Bot Framework v3 Connector for Wechaty PERSONAL Account",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zixia/botbuilder-wechaty-connector.git"
+  },
+  "author": "Huan LI <zixia@zixia.net>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/zixia/botbuilder-wechaty-connector/issues"
+  },
+  "homepage": "https://github.com/zixia/botbuilder-wechaty-connector#readme"
+}
