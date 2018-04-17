@@ -10,7 +10,8 @@
     "example": "ts-node examples/example.ts",
     "lint": "npm run lint:ts",
     "lint:ts": "tslint --project tsconfig.json && tsc --noEmit",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "test:pack": "npm run dist && export TMPDIR=/tmp/pack-testing.$$ && (cd dist && npm pack) && mkdir $TMPDIR && mv dist/*-*.*.*.tgz $TMPDIR && cp tests/fixtures/smoke-testing.js $TMPDIR && cd $TMPDIR && npm init -y && npm i *-*.*.*.tgz && node smoke-testing.js"
   },
   "repository": {
     "type": "git",

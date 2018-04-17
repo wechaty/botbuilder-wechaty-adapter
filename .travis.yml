@@ -1,0 +1,57 @@
+language: node_js
+node_js:
+  - "9"
+
+os:
+  - linux
+
+
+cache:
+  directories:
+    - node_modules
+
+stages:
+  - test
+  - pack
+  - name: deploy
+    if: branch =~ ^(master|v\d+\.\d+)
+        AND (type NOT IN (cron, pull_request))
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - echo $TRAVIS_OS_NAME
+        - node --version
+        - npm --version
+        - npm test
+
+    - stage: pack
+      script:
+        - npm run test:pack && echo 'Npm pack testing is passed'
+
+    - stage: deploy
+      script:
+        - echo "Deploying to NPM ..."
+        - npm version
+        - npm run dist
+
+      before_deploy:
+        - cd dist/
+
+      deploy:
+        provider: npm
+        email: zixia@zixia.net
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/41a19fbf1d54a04e5217
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always
+  email:
+    on_success: change
+    on_failure: change

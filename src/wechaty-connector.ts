@@ -1,6 +1,8 @@
 import * as builder         from 'botbuilder'
 import * as QrcodeTerminal  from 'qrcode-terminal'
 
+const VERSION: string = require('../package.json').version
+
 import {
   Contact,
   Message,
@@ -36,6 +38,10 @@ export class WechatyConnector implements builder.IConnector {
     this.wechaty = Wechaty.instance({
       profile: 'botbuilder-wechaty-connector',
     })
+  }
+
+  public version(): string {
+    return VERSION
   }
 
   public listen(): void {
