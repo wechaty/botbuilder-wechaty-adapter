@@ -1,10 +1,6 @@
-import * as express from 'express'
 import * as builder from 'botbuilder'
 
 import { WechatyConnector } from '../src/wechaty-connector'
-
-// Create http server
-const app = express()
 
 // Create wechaty connector
 const wechatyConnector = new WechatyConnector()
@@ -40,14 +36,5 @@ bot.dialog('/', [
       session.send('All right, ' + results.response)
   },
 ])
-
-app.get('*', function(req, res) {
-  res.send('Hello Wechaty Bot')
-})
-
-// Start listen on port
-app.listen(process.env.port || 9090, function() {
-  console.log('server is running.')
-})
 
 wechatyConnector.listen()
