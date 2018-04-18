@@ -1,4 +1,6 @@
 # BOTBUILDER-WECHATY-CONNECTOR
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/zixia/botbuilder-wechaty-connector.svg)](https://greenkeeper.io/)
 Microsoft Bot Framework v3 connector for Wechat **PERSONAL** Account
 
 [![npm version](https://badge.fury.io/js/botbuilder-wechaty-connector.svg)](https://badge.fury.io/js/botbuilder-wechaty-connector)
