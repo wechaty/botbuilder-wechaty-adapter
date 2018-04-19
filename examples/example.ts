@@ -37,4 +37,5 @@ bot.dialog('/', [
   },
 ])
 
+// Listen for messages from wechat personal account
 wechatyConnector.listen()

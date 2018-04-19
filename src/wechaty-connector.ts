@@ -30,7 +30,16 @@ export interface WechatyConnectorOptions {
 export class WechatyConnector implements builder.IConnector {
 
   private wechaty:  Wechaty
-  private handler?: any
+
+  private onEventHandler: (
+    events: builder.IEvent[],
+    cb?: (err: Error) => void,
+  ) => void
+
+  protected onInvokeHandler: (
+    event: builder.IEvent,
+    cb?: (err: Error, body: any, status?: number) => void,
+  ) => void
 
   constructor(
     public options: WechatyConnectorOptions = {},
@@ -44,54 +53,41 @@ export class WechatyConnector implements builder.IConnector {
     return VERSION
   }
 
-  public listen(): void {
+  public async listen(): Promise <void> {
     this.wechaty
-    .on('message', msg => {
-      if (!msg.self() && !msg.room()) {
-        this.processMessage(msg)
-      }
-    })
-    .on('logout'	, user => console.log('Bot', `${user.name()} logouted`))
-    .on('login'	  , user => {
-      console.log('Bot', `${user.name()} login`)
-      user.say('Wechaty login').catch(console.error)
-    })
-    .on('scan', (url, code) => {
-      if (!/201|200/.test(String(code))) {
-        const loginUrl = url.replace(/\/qrcode\//, '/l/')
-        QrcodeTerminal.generate(loginUrl)
-      }
-      console.log(`${url}\n[${code}] Scan QR Code above url to log in: `)
-    })
 
-    this.wechaty.start()
+      .on('logout'	, user => console.log('Bot', `${user.name()} logouted`))
+
+      .on('login'	  , user => {
+        console.log('Bot', `${user.name()} login`)
+        user.say('Wechaty login').catch(console.error)
+      })
+
+      .on('scan', (url, code) => {
+        if (!/201|200/.test(String(code))) {
+          const loginUrl = url.replace(/\/qrcode\//, '/l/')
+          QrcodeTerminal.generate(loginUrl)
+        }
+        console.log(`${url}\n[${code}] Scan QR Code above url to log in: `)
+      })
+
+      .on('message', msg => {
+        if (  msg.self()
+            || msg.room()
+            || !msg.from().personal()
+            || msg.type() !== MsgType.TEXT
+        ) {
+          return
+        }
+
+        this.processMessage(msg)
+      })
+
+    await this.wechaty.start()
   }
 
   public processMessage(wechatyMessage: Message): this {
     const atts: builder.AttachmentType[] = []
-    const msgType = wechatyMessage.type()
-
-    if (!this.handler) {
-        throw new Error('Error no handler')
-    }
-
-    const addr: builder.IAddress = {
-        channelId: 'wechaty',
-        user: { id: wechatyMessage.from().id,  name: wechatyMessage.from().name() },
-        bot:  { id: wechatyMessage.to()!.id,    name: wechatyMessage.to()!.name() },
-        conversation: { id: 'Convo1' },
-    }
-
-    let msg = new builder.Message()
-                     .address(addr)
-                     .timestamp(new Date().toISOString())
-                     .entities([])
-
-    if (msgType === MsgType.TEXT) {
-        msg = msg.text(wechatyMessage.content())
-    } else {
-        msg = msg.text('')
-    }
 
     /*
       To Be Implemented
@@ -161,62 +157,98 @@ export class WechatyConnector implements builder.IConnector {
     }
     */
 
+    const addr: builder.IAddress = {
+      channelId: 'wechaty',
+      user: { id: wechatyMessage.from().id,  name: wechatyMessage.from().name() },
+      bot:  { id: wechatyMessage.to()!.id,    name: wechatyMessage.to()!.name() },
+      conversation: { id: 'Convo1' },
+    }
+
+    let msg = new builder.Message()
+                    .address(addr)
+                    .timestamp()
+                    .entities([])
+
+    switch (wechatyMessage.type()) {
+      case MsgType.TEXT:
+        msg = msg.text(wechatyMessage.content())
+        break
+      default:
+        msg = msg.text('')
+    }
+
     msg = msg.attachments(atts)
-    this.handler([msg.toMessage()])
+
+    if (this.onEventHandler) {
+      this.onEventHandler([msg.toMessage()])
+    }
+
     return this
   }
 
-  public onEvent(
+  public processEvent(event: builder.IEvent): this {
+    if (this.onEventHandler) {
+        this.onEventHandler([event])
+    }
+    return this
+  }
+
+  public onEvent(handler: (
+    events: builder.IEvent[],
+    cb?: (err: Error) => void) => void,
+  ): void {
+      this.onEventHandler = handler
+  }
+
+  public onInvoke(
     handler: (
-      events: builder.IEvent[],
-      callback?: (err: Error) => void,
+      event: builder.IEvent,
+      cb?: (err: Error, body: any, status?: number) => void,
     ) => void,
   ): void {
-    this.handler = handler
+      this.onInvokeHandler = handler
   }
 
+  /**
+   * Bot Originated
+   */
   public async send(
-    messages: builder.IMessage[],
-    callback: (
+    messageList: builder.IMessage[],
+    done: (
       err:        Error,
       addresses?: builder.IAddress[],
     ) => void,
   ): Promise<void> {
-    for (let i = 0; i < messages.length; i++) {
-      console.log(messages[i].text)
-      await this.postMessage(messages[i], callback)
+
+    const addresses: any[] = []
+
+    for (const idx in messageList) {
+      const msg = messageList[idx]
+      try {
+        const wechatyContact = Contact.load(msg.address.user.id)
+        await wechatyContact.ready()
+
+        if (msg.type === 'delay') {
+          await new Promise(r => setTimeout(r, (<any>msg).value))
+        } else if (msg.type === 'message') {
+          if (msg.text) {
+            await wechatyContact.say(msg.text)
+          }
+          if (msg.attachments && msg.attachments.length > 0) {
+            for (let j = 0; j < msg.attachments.length; j++) {
+              // renderAttachment(msg.attachments[j])
+            }
+          }
+          addresses.push({
+            ...msg.address,
+            id: idx,
+          })
+        }
+      } catch (e) {
+        return done(e)
+      }
     }
-  }
-
-  public startConversation(
-    address: builder.IAddress,
-    callback: (
-      err:      Error,
-      address?: builder.IAddress,
-    ) => void,
-  ): void {
-      const addr = Object.assign(address, {
-          conversation: { id: 'Convo1' },
-      })
-
-      callback(null!, addr)
-  }
-
-  public async postMessage(
-    message: builder.IMessage,
-    callback: (
-      err:        Error,
-      addresses?: builder.IAddress[],
-    ) => void,
-  ): Promise<void> {
-    const addr = message.address
-    const user = addr.user
-
-    if (message.text && message.text.length > 0) {
-      const wechatyContact = Contact.load(user.id)
-      await wechatyContact.ready()
-      await wechatyContact.say(message.text)
-    }
+    return done(undefined!, addresses)
 
     /*
     if (message.attachments && message.attachments.length > 0) {
@@ -256,6 +288,22 @@ export class WechatyConnector implements builder.IConnector {
         }
     }
     */
+
+  }
+
+  public startConversation(
+    address: builder.IAddress,
+    cb: (
+      err:     Error,
+      address?: builder.IAddress,
+    ) => void,
+  ): void {
+    cb(undefined!, {
+      ...address,
+      conversation: {
+        id: 'Convo1',
+      },
+    })
   }
 
 }

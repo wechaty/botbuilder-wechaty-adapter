@@ -96,6 +96,24 @@ This package is greatly inspired by:
 
 Please feel free to [open issues](https://github.com/zixia/botbuilder-wechaty-connector/issues/new), if you have any suggestion.
 
+## SEE ALSO
+
+* [Create a bot with the Bot Builder SDK for Node.js](https://docs.microsoft.com/en-us/azure/bot-service/nodejs/bot-builder-nodejs-quickstart)
+* [Key concepts in the Bot Builder SDK for Node.js](https://docs.microsoft.com/en-us/azure/bot-service/nodejs/bot-builder-nodejs-concepts)
+* [VIDEO: Become a Bot Builder with Microsoft Bot Framework - James Mann speaking at dotnetsheff in April, 2017](https://pusher.com/sessions/meetup/dotnetsheff/become-a-bot-builder-with-microsoft-bot-framework)
+
+## CHANGELOG
+
+### v0.1.0 master (Apr 19, 2018)
+
+1. Skip messages from other than a personal account(like official account, and SYS message)
+1. Refactoring all the code from `ConsoleConnector`
+
+### v0.0.1 (Apr 17, 2018)
+
+1. Working with Wechaty Personal Text Messages.
+1. An example run by `npm run example`
+
 ## AUTHOR
 
 [Huan LI](http://linkedin.com/in/zixia) \<zixia@zixia.net\>
