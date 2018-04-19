@@ -1,6 +1,6 @@
 {
   "name": "botbuilder-wechaty-connector",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Microsoft Bot Framework v3 Connector for Wechat PERSONAL Account",
   "main": "src/wechaty-connector.js",
   "typings": "src/wechaty-connector.d.ts",
