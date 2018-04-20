@@ -34,13 +34,13 @@ We assume that, you already have a wechat personal account.
 
 **Step 1**, create your bot with wechaty connector
 ```
-var builder   = require('botbuilder'),
-    connector = require('botbuilder-wechaty-connector')
+import { UniversalBot }     from 'botbuilder'
+import { WechatyConnector } from 'botbuilder-wechaty-connector'
     
-var wechatyConnector = new connector.WechatyConnector()
+const wechatyConnector = new WechatyConnector()
 wechatyConnector.listen()
 
-var bot = new builder.UniversalBot(wechatyConnector)
+const bot = new UniversalBot(wechatyConnector)
 ```
 
 **Step 2**, add dialogs and you can see `message` in session object include wechat message content you sent.
@@ -49,7 +49,7 @@ bot.dialog('/', function (session) {
 	console.log('Wechat message: ', session.message);
 });
 ```
-And, you can find media content like image, voice, video, etc in `message.attachments` of session object.
+And, you can find media content like image, voice, video, etc in `message.attachments` of session object.(Not implement yet)
 ```
 bot.dialog('/', function (session) {
 	console.log('Wechat media: ', session.message.attachments);

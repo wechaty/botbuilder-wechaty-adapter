@@ -307,3 +307,5 @@ export class WechatyConnector implements builder.IConnector {
   }
 
 }
+
+export default WechatyConnector
