@@ -13,8 +13,7 @@ Microsoft Bot Framework v3 connector for Wechat **PERSONAL** Account
 * Ready for Microsoft Bot Framework v3
 * **no need a registered bot** on [dev.botframework.com](https://dev.botframework.com/), but require a certified wechat office account, go to apply [trial account](http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login)
 * depend on [wechaty](https://github.com/chatie/wechaty)
-* support receiving and sending almost any wechat message types
-* for [express](http://expressjs.com/) framework
+* support receiving and sending almost any wechat message types(WIP)
 
 ## TODO
 
@@ -39,20 +38,12 @@ var builder   = require('botbuilder'),
     connector = require('botbuilder-wechaty-connector')
     
 var wechatyConnector = new connector.WechatyConnector()
+wechatyConnector.listen()
 
 var bot = new builder.UniversalBot(wechatyConnector)
 ```
 
-**Step 2**, create express app as usual and use wechat connector as middleware
-```
-var app    = express()
-app.use('/bot/wechaty', wechatyConnector.listen())
-app.listen(9090)
-```
-
-when you configure your wechaty message service, you have to offer an  available public url, if can not, try [ngrok](https://ngrok.com/). When submit this url in wechat backend, wechat server will send request to this url, so, ensure you server running good before submiting.
-
-**Step 3**, add dialogs and you can see `message` in session object include wechat message content you sent.
+**Step 2**, add dialogs and you can see `message` in session object include wechat message content you sent.
 ```
 bot.dialog('/', function (session) {
 	console.log('Wechat message: ', session.message);
@@ -70,7 +61,7 @@ bot.dialog('/', function (session) {
 Send text message
 ```
 bot.dialog('/', function (session) {
-	session.send("Im a wechat bot!");
+	session.send("Im a wechaty bot!");
 });
 ```
 
