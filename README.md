@@ -80,7 +80,7 @@ npm run example
 
 This package is greatly inspired by:
 
-1. [botbuild-wechat-connector](https://github.com/jyfcrw/botbuilder-wechat-connector), so thanks @jyfcrw.
+1. [botbuilder-wechat-connector](https://github.com/jyfcrw/botbuilder-wechat-connector), so thanks @jyfcrw.
 1. [botbuilder-wechat](https://github.com/markusf/botbuilder-wechat), so thanks @markusf.
 
 ## ISSUES
