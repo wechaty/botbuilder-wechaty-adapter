@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@types/blue-tape": "^0.1.31",
-    "@types/node": "^9.6.5",
+    "@types/node": "^10.0.3",
     "blue-tape": "^1.0.0",
     "git-scripts": "^0.2.1",
     "shx": "^0.2.2",
