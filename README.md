@@ -7,13 +7,12 @@
 
 Microsoft Bot Framework v3 connector for Wechat **PERSONAL** Account
 
-
 ## FEATURES
 
 * Ready for Microsoft Bot Framework v3
-* **no need a registered bot** on [dev.botframework.com](https://dev.botframework.com/), but require a certified wechat office account, go to apply [trial account](http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login)
-* depend on [wechaty](https://github.com/chatie/wechaty)
-* support receiving and sending almost any wechat message types(WIP)
+* **no need a registered bot** on [dev.botframework.com](https://dev.botframework.com/), but require a wechat personal(NOT official!) account.
+* Powered by [wechaty](https://github.com/chatie/wechaty)
+* Support receiving and sending almost any wechat message types(WIP)
 
 ## TODO
 
@@ -22,7 +21,7 @@ Microsoft Bot Framework v3 connector for Wechat **PERSONAL** Account
 
 ## INSTALLATION
 
-```
+```shell
 npm install botbuilder-wechaty-connector
 ```
 
@@ -33,10 +32,11 @@ We assume that, you already have a wechat personal account.
 ## Usage
 
 **Step 1**, create your bot with wechaty connector
-```
+
+```ts
 import { UniversalBot }     from 'botbuilder'
 import { WechatyConnector } from 'botbuilder-wechaty-connector'
-    
+
 const wechatyConnector = new WechatyConnector()
 wechatyConnector.listen()
 
@@ -44,35 +44,40 @@ const bot = new UniversalBot(wechatyConnector)
 ```
 
 **Step 2**, add dialogs and you can see `message` in session object include wechat message content you sent.
-```
+
+```ts
 bot.dialog('/', function (session) {
-	console.log('Wechat message: ', session.message);
-});
+  console.log('Wechat message: ', session.message)
+})
 ```
+
 And, you can find media content like image, voice, video, etc in `message.attachments` of session object.(Not implement yet)
-```
+
+```ts
 bot.dialog('/', function (session) {
-	console.log('Wechat media: ', session.message.attachments);
+  console.log('Wechat media: ', session.message.attachments)
 });
 ```
 
 **Step 4**, sending message out is the same.
 
 Send text message
-```
+
+```ts
 bot.dialog('/', function (session) {
-	session.send("Im a wechaty bot!");
+  session.send("Im a wechaty bot!");
 });
 ```
 
 ### Attachment
- 
+
 To Be Supported.
 
 ## EXAMPLE
+
 An example is located at `examples/` directory. Using following command to run it.
 
-```
+```shell
 npm run example
 ```
 
