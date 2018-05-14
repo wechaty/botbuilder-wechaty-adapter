@@ -101,7 +101,7 @@ Please feel free to [open issues](https://github.com/zixia/botbuilder-wechaty-co
 
 ## CHANGELOG
 
-### v0.1 master (Apr 19, 2018)
+### v0.2 master (Apr 19, 2018)
 
 1. Skip messages from other than a personal account(like official account, and SYS message)
 1. Refactoring all the code from `ConsoleConnector`
