@@ -9,8 +9,8 @@ const bot = new builder.UniversalBot(wechatyConnector)
 
 // Bot dialogs
 bot.dialog('/', [
-  function (session) {
-      if (session.userData && session.userData.name) {
+  (session) => {
+    if (session.userData && session.userData.name) {
         /*
         if (session.message.attachments &&
           session.message.attachments.length > 0) {
@@ -21,21 +21,22 @@ bot.dialog('/', [
           }
         }
         */
-        session.send('How are you, ' + session.userData.name)
-      } else {
-        builder.Prompts.text(session, 'Whats your name?')
-      }
+      session.send('How are you, ' + session.userData.name)
+    } else {
+      builder.Prompts.text(session, 'Whats your name?')
+    }
   },
-  function (session, results) {
-      session.userData.name = results.response
-      session.send('OK, ' + session.userData.name)
-      builder.Prompts.text(session, 'Whats your age?')
+  (session, results) => {
+    session.userData.name = results.response
+    session.send('OK, ' + session.userData.name)
+    builder.Prompts.text(session, 'Whats your age?')
   },
-  function (session, results) {
-      session.userData.age = results.response
-      session.send('All right, ' + results.response)
+  (session, results) => {
+    session.userData.age = results.response
+    session.send('All right, ' + results.response)
   },
 ])
 
 // Listen for messages from wechat personal account
 wechatyConnector.listen()
+.catch(console.error)
