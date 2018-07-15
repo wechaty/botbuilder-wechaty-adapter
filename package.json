@@ -1,6 +1,6 @@
 {
   "name": "botbuilder-wechaty-connector",
-  "version": "0.2.3",
+  "version": "0.4.2",
   "description": "Microsoft Bot Framework v3 Connector for Wechat PERSONAL Account",
   "main": "src/wechaty-connector.js",
   "typings": "src/wechaty-connector.d.ts",
@@ -33,16 +33,17 @@
   "dependencies": {
     "botbuilder": "^3.2.0",
     "qrcode-terminal": "^0.12.0",
-    "wechaty": "^0.14.0"
+    "wechaty": "^0.18.0"
   },
   "devDependencies": {
     "@types/blue-tape": "^0.1.31",
     "@types/node": "^10.0.3",
     "blue-tape": "^1.0.0",
     "git-scripts": "^0.2.1",
-    "shx": "^0.2.2",
+    "shx": "^0.3.0",
     "ts-node": "^6.0.0",
     "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.1.0",
     "typescript": "^2.8.1"
   },
   "publishConfig": {

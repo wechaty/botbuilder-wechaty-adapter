@@ -1,12 +1,14 @@
 import * as builder         from 'botbuilder'
 import * as QrcodeTerminal  from 'qrcode-terminal'
 
+// tslint:disable:no-console
+
+// tslint:disable-next-line:no-var-requires
 const VERSION: string = require('../package.json').version
 
 import {
   Contact,
   Message,
-  MsgType,
   Wechaty,
 }                   from 'wechaty'
 
@@ -41,7 +43,7 @@ export class WechatyConnector implements builder.IConnector {
     cb?: (err: Error, body: any, status?: number) => void,
   ) => void
 
-  constructor(
+  constructor (
     public options: WechatyConnectorOptions = {},
   ) {
     this.wechaty = Wechaty.instance({
@@ -49,11 +51,11 @@ export class WechatyConnector implements builder.IConnector {
     })
   }
 
-  public version(): string {
+  public version (): string {
     return VERSION
   }
 
-  public async listen(): Promise <void> {
+  public async listen (): Promise <void> {
     this.wechaty
 
       .on('logout'	, user => console.log('Bot', `${user.name()} logouted`))
@@ -72,10 +74,11 @@ export class WechatyConnector implements builder.IConnector {
       })
 
       .on('message', msg => {
+        const from = msg.from()
         if (  msg.self()
             || msg.room()
-            || !msg.from().personal()
-            || msg.type() !== MsgType.TEXT
+            || from && !from.personal()
+            || msg.type() !== this.wechaty.Message.Type.Text
         ) {
           return
         }
@@ -86,7 +89,15 @@ export class WechatyConnector implements builder.IConnector {
     await this.wechaty.start()
   }
 
-  public processMessage(wechatyMessage: Message): this {
+  public processMessage (wechatyMessage: Message): this {
+    const from = wechatyMessage.from()
+    const to   = wechatyMessage.to()
+
+    if (!from || !to) {
+      console.error('discard message without a from/to contact: ' + wechatyMessage)
+      return this
+    }
+
     const atts: builder.AttachmentType[] = []
 
     /*
@@ -158,10 +169,10 @@ export class WechatyConnector implements builder.IConnector {
     */
 
     const addr: builder.IAddress = {
-      channelId: 'wechaty',
-      user: { id: wechatyMessage.from().id,  name: wechatyMessage.from().name() },
-      bot:  { id: wechatyMessage.to()!.id,    name: wechatyMessage.to()!.name() },
-      conversation: { id: 'Convo1' },
+      bot          : { id: to.id,    name: to.name() },
+      channelId    : 'wechaty',
+      conversation : { id: 'Convo1' },
+      user         : { id: from.id,  name: from.name() },
     }
 
     let msg = new builder.Message()
@@ -170,7 +181,7 @@ export class WechatyConnector implements builder.IConnector {
                     .entities([])
 
     switch (wechatyMessage.type()) {
-      case MsgType.TEXT:
+      case this.wechaty.Message.Type.Text:
         msg = msg.text(wechatyMessage.content())
         break
       default:
@@ -186,33 +197,33 @@ export class WechatyConnector implements builder.IConnector {
     return this
   }
 
-  public processEvent(event: builder.IEvent): this {
+  public processEvent (event: builder.IEvent): this {
     if (this.onEventHandler) {
-        this.onEventHandler([event])
+      this.onEventHandler([event])
     }
     return this
   }
 
-  public onEvent(handler: (
+  public onEvent (handler: (
     events: builder.IEvent[],
     cb?: (err: Error) => void) => void,
   ): void {
-      this.onEventHandler = handler
+    this.onEventHandler = handler
   }
 
-  public onInvoke(
+  public onInvoke (
     handler: (
       event: builder.IEvent,
       cb?: (err: Error, body: any, status?: number) => void,
     ) => void,
   ): void {
-      this.onInvokeHandler = handler
+    this.onInvokeHandler = handler
   }
 
   /**
    * Bot Originated
    */
-  public async send(
+  public async send (
     messageList: builder.IMessage[],
     done: (
       err:        Error,
@@ -222,22 +233,22 @@ export class WechatyConnector implements builder.IConnector {
 
     const addresses: any[] = []
 
-    for (const idx in messageList) {
+    for (let idx = 0; idx < messageList.length; idx++) {
       const msg = messageList[idx]
       try {
         const wechatyContact = Contact.load(msg.address.user.id)
         await wechatyContact.ready()
 
         if (msg.type === 'delay') {
-          await new Promise(r => setTimeout(r, (<any>msg).value))
+          await new Promise(r => setTimeout(r, (msg as any).value))
         } else if (msg.type === 'message') {
           if (msg.text) {
             await wechatyContact.say(msg.text)
           }
           if (msg.attachments && msg.attachments.length > 0) {
-            for (let j = 0; j < msg.attachments.length; j++) {
-              // renderAttachment(msg.attachments[j])
-            }
+            // for (const attachment of msg.attachments) {
+              // renderAttachment(attachment)
+            // }
           }
           addresses.push({
             ...msg.address,
@@ -291,7 +302,7 @@ export class WechatyConnector implements builder.IConnector {
 
   }
 
-  public startConversation(
+  public startConversation (
     address: builder.IAddress,
     cb: (
       err:     Error,
