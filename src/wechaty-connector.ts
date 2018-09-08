@@ -77,8 +77,8 @@ export class WechatyConnector implements builder.IConnector {
         const from = msg.from()
         if (  msg.self()
             || msg.room()
-            || from && !from.personal()
-            || msg.type() !== this.wechaty.Message.Type.Text
+            || (from && from.type() !== this.wechaty.Contact.Type.Personal)
+            || (msg.type() !== this.wechaty.Message.Type.Text)
         ) {
           return
         }
@@ -182,7 +182,7 @@ export class WechatyConnector implements builder.IConnector {
 
     switch (wechatyMessage.type()) {
       case this.wechaty.Message.Type.Text:
-        msg = msg.text(wechatyMessage.content())
+        msg = msg.text(wechatyMessage.text())
         break
       default:
         msg = msg.text('')
