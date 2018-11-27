@@ -5,6 +5,7 @@
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-blue.svg)](https://www.typescriptlang.org/)
 [![Greenkeeper badge](https://badges.greenkeeper.io/huan/botbuilder-wechaty-connector.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.com/huan/botbuilder-wechaty-connector.svg?branch=master)](https://travis-ci.com/huan/botbuilder-wechaty-connector)
+[![Build Status](https://zixia.visualstudio.com/zixia/_apis/build/status/zixia.botbuilder-wechaty-connector)](https://zixia.visualstudio.com/zixia/_build/latest?definitionId=3)
 
 Microsoft Bot Framework v3 connector for Wechat **PERSONAL** Account
 

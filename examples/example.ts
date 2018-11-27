@@ -1,3 +1,5 @@
+// tslint:disable:no-console
+
 import * as builder from 'botbuilder'
 
 import { WechatyConnector } from '../src/wechaty-connector'

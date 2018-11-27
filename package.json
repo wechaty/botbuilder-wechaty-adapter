@@ -1,6 +1,6 @@
 {
   "name": "botbuilder-wechaty-connector",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Microsoft Bot Framework v3 Connector for Wechat PERSONAL Account",
   "main": "src/wechaty-connector.js",
   "typings": "src/wechaty-connector.d.ts",
@@ -43,8 +43,8 @@
     "ts-node": "^7.0.0",
     "shx": "^0.3.0",
     "tslint": "^5.9.1",
-    "tslint-config-standard": "^8.0.0",
-    "typescript": "^2.8.1"
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.0.3"
   },
   "publishConfig": {
     "access": "public",
