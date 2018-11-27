@@ -3,8 +3,8 @@
 [![npm version](https://badge.fury.io/js/botbuilder-wechaty-connector.svg)](https://badge.fury.io/js/botbuilder-wechaty-connector)
 [![Powered by Wechaty](https://img.shields.io/badge/Powered%20By-Wechaty-green.svg)](https://github.com/chatie/wechaty)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-blue.svg)](https://www.typescriptlang.org/)
-[![Greenkeeper badge](https://badges.greenkeeper.io/zixia/botbuilder-wechaty-connector.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.com/zixia/botbuilder-wechaty-connector.svg?branch=master)](https://travis-ci.com/zixia/botbuilder-wechaty-connector)
+[![Greenkeeper badge](https://badges.greenkeeper.io/huan/botbuilder-wechaty-connector.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.com/huan/botbuilder-wechaty-connector.svg?branch=master)](https://travis-ci.com/huan/botbuilder-wechaty-connector)
 
 Microsoft Bot Framework v3 connector for Wechat **PERSONAL** Account
 
@@ -91,7 +91,7 @@ This package is greatly inspired by:
 
 ## ISSUES
 
-Please feel free to [open issues](https://github.com/zixia/botbuilder-wechaty-connector/issues/new), if you have any suggestion.
+Please feel free to [open issues](https://github.com/huan/botbuilder-wechaty-connector/issues/new), if you have any suggestion.
 
 ## SEE ALSO
 

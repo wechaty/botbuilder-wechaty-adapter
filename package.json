@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zixia/botbuilder-wechaty-connector.git"
+    "url": "https://github.com/huan/botbuilder-wechaty-connector.git"
   },
   "keywords": [
     "weixin",
@@ -27,9 +27,9 @@
   "author": "Huan LI <zixia@zixia.net>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/zixia/botbuilder-wechaty-connector/issues"
+    "url": "https://github.com/huan/botbuilder-wechaty-connector/issues"
   },
-  "homepage": "https://github.com/zixia/botbuilder-wechaty-connector#readme",
+  "homepage": "https://github.com/huan/botbuilder-wechaty-connector#readme",
   "dependencies": {
     "botbuilder": "^3.2.0",
     "qrcode-terminal": "^0.12.0",
