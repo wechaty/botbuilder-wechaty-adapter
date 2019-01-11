@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/huan/botbuilder-wechaty-connector#readme",
   "dependencies": {
-    "botbuilder": "^4.1.7",
+    "botbuilder": "^4.2.0",
     "qrcode-terminal": "^0.12.0",
     "wechaty": "^0.22.1"
   },
