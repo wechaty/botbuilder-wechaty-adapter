@@ -1,7 +1,7 @@
-# BOTBUILDER-WECHATY-CONNECTOR
+# BOTBUILDER-WECHATY-ADAPTER
 
 [![npm version](https://badge.fury.io/js/botbuilder-wechaty-connector.svg)](https://badge.fury.io/js/botbuilder-wechaty-connector)
-[![Powered by Wechaty](https://img.shields.io/badge/Powered%20By-Wechaty-green.svg)](https://github.com/chatie/wechaty)
+[![Powered by Wechaty](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/chatie/wechaty)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-blue.svg)](https://www.typescriptlang.org/)
 [![Greenkeeper badge](https://badges.greenkeeper.io/huan/botbuilder-wechaty-connector.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.com/huan/botbuilder-wechaty-connector.svg?branch=master)](https://travis-ci.com/huan/botbuilder-wechaty-connector)
@@ -10,7 +10,12 @@
 ![BotBuilder Wechaty Adapter](docs/images/botbuilder-wechaty.jpg)
 > Source: [Time to do it differently, build chatbots with streams](http://fizzylogic.nl/2018/03/09/time-to-do-it-differently-build-chatbots-with-streams/)
 
-Microsoft Bot Framework v4 connector for Wechat **PERSONAL** Account
+Microsoft Bot Framework v4 adapter for Wechat **PERSONAL** Account
+
+If you are finding the Bot Framework v3 version of this adapter, please goto:
+
+1. the [v3.0](https://github.com/huan/botbuilder-wechaty-connector/tree/v3.0) branch, or 
+1. NPM [botbuilder-wechaty-connecter@3](https://www.npmjs.com/package/botbuilder-wechaty-connector)
 
 ## FEATURES
 
@@ -105,11 +110,15 @@ Please feel free to [open issues](https://github.com/huan/botbuilder-wechaty-con
 
 ## CHANGELOG
 
-### v0.5 master
+### v4.0 master
 
-1. Upgrade to Microsoft Bot Frame v4(botbuilder@4)
+Upgrade to Microsoft BotBuilder v4
 
-### v0.4 (Apr 19, 2018)
+1. Package name was rename to `botbuilder-wechaty-adapter` from `botbuilder-wechaty-connect` for following the v4 naming style.
+
+### v3.0 (Jan 11, 2018)
+
+Release `botbuilder-wechaty-connector@3.0` for BotBuilder v3
 
 1. Work with Microsoft Bot Framework v3
 1. Skip messages from other than a personal account(like official account, and SYS message)
@@ -130,6 +139,6 @@ Please feel free to [open issues](https://github.com/huan/botbuilder-wechaty-con
 
 ## COPYRIGHT & LICENSE
 
-* Code & Docs © 2016-2018 Huan LI \<zixia@zixia.net\>
+* Code & Docs © 2016-2019 Huan LI \<zixia@zixia.net\>
 * Code released under the Apache-2.0 License
 * Docs released under Creative Commons
