@@ -7,11 +7,14 @@
 [![Build Status](https://travis-ci.com/huan/botbuilder-wechaty-connector.svg?branch=master)](https://travis-ci.com/huan/botbuilder-wechaty-connector)
 [![Build Status](https://zixia.visualstudio.com/zixia/_apis/build/status/zixia.botbuilder-wechaty-connector)](https://zixia.visualstudio.com/zixia/_build/latest?definitionId=3)
 
-Microsoft Bot Framework v3 connector for Wechat **PERSONAL** Account
+![BotBuilder Wechaty Adapter](docs/images/botbuilder-wechaty.jpg)
+> Source: [Time to do it differently, build chatbots with streams](http://fizzylogic.nl/2018/03/09/time-to-do-it-differently-build-chatbots-with-streams/)
+
+Microsoft Bot Framework v4 connector for Wechat **PERSONAL** Account
 
 ## FEATURES
 
-* Ready for Microsoft Bot Framework v3
+* Ready for Microsoft Bot Framework v4
 * **no need a registered bot** on [dev.botframework.com](https://dev.botframework.com/), but require a wechat personal(NOT official!) account.
 * Powered by [wechaty](https://github.com/chatie/wechaty)
 * Support receiving and sending almost any wechat message types(WIP)
@@ -24,7 +27,7 @@ Microsoft Bot Framework v3 connector for Wechat **PERSONAL** Account
 ## INSTALLATION
 
 ```shell
-npm install botbuilder-wechaty-connector
+npm install botbuilder-wechaty-adapter
 ```
 
 ## Preparation
@@ -102,8 +105,13 @@ Please feel free to [open issues](https://github.com/huan/botbuilder-wechaty-con
 
 ## CHANGELOG
 
-### v0.2 master (Apr 19, 2018)
+### v0.5 master
 
+1. Upgrade to Microsoft Bot Frame v4(botbuilder@4)
+
+### v0.4 (Apr 19, 2018)
+
+1. Work with Microsoft Bot Framework v3
 1. Skip messages from other than a personal account(like official account, and SYS message)
 1. Refactoring all the code from `ConsoleConnector`
 

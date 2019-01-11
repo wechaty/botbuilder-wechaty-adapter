@@ -1,10 +1,12 @@
 import * as builder         from 'botbuilder'
 import * as QrcodeTerminal  from 'qrcode-terminal'
 
+import { VERSION } from './version'
+
 // tslint:disable:no-console
 
 // tslint:disable-next-line:no-var-requires
-const VERSION: string = require('../package.json').version
+// const VERSION: string = require('../package.json').version
 
 import {
   Contact,
