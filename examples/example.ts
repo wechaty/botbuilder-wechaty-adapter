@@ -39,7 +39,7 @@ const echoBot = new EchoBot()
 const adapter = new WechatyAdapter()
 adapter.listen(async (turnContext: TurnContext) => {
   await echoBot.onTurn(turnContext)
-})
+}).catch(console.error)
 
 console.log('> Wechaty EchoBot is online. I will reply `dong` if you send me `ding`!')
 console.log('> Say "quit" to end.\n')

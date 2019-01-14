@@ -6,12 +6,14 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "clean": "shx rm -fr dist/*",
-    "dist": "npm run clean && tsc && shx cp {package.json,README.md,LICENSE} dist/",
+    "dist": "npm run clean && tsc && npm run dist:version",
+    "dist:version": "echo exports.VERSION=$(jq .version package.json) > dist/src/version.js",
     "example": "ts-node examples/example.ts",
     "lint": "npm run lint:ts",
     "lint:ts": "tslint --project tsconfig.json && tsc --noEmit",
     "pack": "npm pack",
-    "test": "npm run lint",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "blue-tape -r ts-node/register \"src/**/*.spec.ts\" \"src/*.spec.ts\" \"tests/*.spec.ts\" \"tests/**/*.spec.ts\"",
     "test:pack": "bash -x scripts/npm-pack-testing.sh"
   },
   "repository": {

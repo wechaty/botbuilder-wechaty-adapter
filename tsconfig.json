@@ -6,6 +6,7 @@
     , "declaration": true
     , "sourceMap": true
     , "noLib": false
+    , "esModuleInterop" : true
 
     , "noEmitOnError": true
     , "noUnusedLocals": true

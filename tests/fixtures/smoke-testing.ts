@@ -1,6 +1,13 @@
 #!/usr/bin/env node
 
-import { WechatyConnector } from 'botbuilder-wechaty-connector'
+import { WechatyAdapter } from 'botbuilder-wechaty-adapter'
 
-const c = new WechatyConnector()
-console.log(`botbuilder-wechaty-connector v${c.version()} pack testing passed.`)
+const adapter = new WechatyAdapter()
+
+const version = adapter.version()
+
+if (version === '0.0.0') {
+  throw new Error('Version number is not set.')
+}
+
+console.log(`botbuilder-wechaty-adapter v${adapter.version()} pack testing passed.`)

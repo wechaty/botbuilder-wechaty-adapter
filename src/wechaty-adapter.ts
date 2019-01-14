@@ -198,7 +198,7 @@ export class WechatyAdapter extends BotAdapter {
             throw new Error('no text')
           }
 
-          const user = await this.wechaty.Contact.load(recipientId)
+          const user = this.wechaty.Contact.load(recipientId)
           await user.say(text)
           // console.log((activity.text != null) ? activity.text : '')
           break
