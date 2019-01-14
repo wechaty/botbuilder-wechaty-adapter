@@ -36,9 +36,6 @@ jobs:
         - if ./scripts/development-release.ts; then ./scripts/package-publish-config-tag-next.ts; fi
         - npm run dist
 
-      before_deploy:
-        - cd dist/
-
       deploy:
         provider: npm
         email: zixia@zixia.net
@@ -46,6 +43,7 @@ jobs:
         skip_cleanup: true
         on:
           all_branches: true
+
 notifications:
   webhooks:
     urls:
