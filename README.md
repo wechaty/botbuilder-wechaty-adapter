@@ -15,7 +15,7 @@ Microsoft Bot Framework v4 adapter for Wechat **Individual** Account
 If you are finding the Bot Framework v3 version of this adapter, please goto:
 
 1. the [v3.0](https://github.com/huan/botbuilder-wechaty-adapter/tree/v3.0) branch, or 
-1. NPM [botbuilder-wechaty-connecter@3](https://www.npmjs.com/package/botbuilder-wechaty-adapter)
+1. NPM [botbuilder-wechaty-connecter@3](https://www.npmjs.com/package/botbuilder-wechaty-connector)
 
 ## FEATURES
 
