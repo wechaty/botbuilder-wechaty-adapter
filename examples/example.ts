@@ -23,7 +23,9 @@ export class EchoBot {
           break
 
         case 'ding':
+          console.log('Replying `dong`...')
           await turnContext.sendActivity('dong')
+          console.log('Replied.')
           break
 
         default:
