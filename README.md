@@ -44,16 +44,10 @@ import { WechatyAdapter } from "botbuilder-wechaty-adapter"
 const adapter = new WechatyAdapter()
 ```
 
-**Step 2**, start your wechaty adapter:
+**Step 2**, start listening your wechaty adapter:
 
 ```ts
-await adapter.start()
-```
-
-**Step 3**, Listen for activities:
-
-```ts
-adapter.processActivity(async (context: TurnContext) => {
+const closeFn = await adapter.listen(async (context: TurnContext) => {
   // ...
 })
 ```
