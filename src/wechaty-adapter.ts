@@ -17,6 +17,7 @@ import {
   log,
   Message,
   Wechaty,
+  WechatyOptions,
 }                   from 'wechaty'
 
 import { VERSION } from './version'
@@ -25,13 +26,20 @@ import { VERSION } from './version'
  * @module botbuilder-wechaty-adapter
  */
 
+export interface WechatyAdapterOptions {
+  wechatyOptions?: WechatyOptions,
+}
+
 export class WechatyAdapter extends BotAdapter {
   private readonly wechaty: Wechaty
 
-  constructor () {
+  constructor (
+    options?: WechatyAdapterOptions,
+  ) {
     super()
     this.wechaty = new Wechaty({
       profile: 'botbuilder-wechaty-adapter',
+      ...options && options.wechatyOptions,
     })
 
     this.wechaty
