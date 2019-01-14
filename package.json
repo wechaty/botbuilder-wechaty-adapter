@@ -1,21 +1,22 @@
 {
-  "name": "botbuilder-wechaty-connector",
-  "version": "0.5.0",
-  "description": "Microsoft Bot Framework v3 Connector for Wechat PERSONAL Account",
-  "main": "src/wechaty-connector.js",
-  "typings": "src/wechaty-connector.d.ts",
+  "name": "botbuilder-wechaty-adapter",
+  "version": "4.0.0",
+  "description": "Microsoft Bot Framework v4 Adapter for Wechat PERSONAL Account",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "clean": "shx rm -fr dist/*",
     "dist": "npm run clean && tsc && shx cp {package.json,README.md,LICENSE} dist/",
     "example": "ts-node examples/example.ts",
     "lint": "npm run lint:ts",
     "lint:ts": "tslint --project tsconfig.json && tsc --noEmit",
+    "pack": "npm pack",
     "test": "npm run lint",
     "test:pack": "bash -x scripts/npm-pack-testing.sh"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/huan/botbuilder-wechaty-connector.git"
+    "url": "https://github.com/huan/botbuilder-wechaty-adapter.git"
   },
   "keywords": [
     "weixin",
@@ -27,11 +28,10 @@
   "author": "Huan LI <zixia@zixia.net>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/huan/botbuilder-wechaty-connector/issues"
+    "url": "https://github.com/huan/botbuilder-wechaty-adapter/issues"
   },
-  "homepage": "https://github.com/huan/botbuilder-wechaty-connector#readme",
+  "homepage": "https://github.com/huan/botbuilder-wechaty-adapter#readme",
   "dependencies": {
-    "botbuilder": "^4.2.0",
     "qrcode-terminal": "^0.12.0",
     "wechaty": "^0.22.1"
   },
@@ -39,12 +39,16 @@
     "@types/blue-tape": "^0.1.31",
     "@types/node": "^10.0.3",
     "blue-tape": "^1.0.0",
+    "botbuilder": "^4.2.0",
     "git-scripts": "^0.2.1",
     "ts-node": "^7.0.0",
     "shx": "^0.3.0",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^8.0.1",
     "typescript": "^3.0.3"
+  },
+  "peerDependencies": {
+    "botbuilder": "^4.2.0"
   },
   "publishConfig": {
     "access": "public",

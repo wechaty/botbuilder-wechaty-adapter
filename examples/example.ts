@@ -1,44 +1,43 @@
 // tslint:disable:no-console
 
-import * as builder from 'botbuilder'
+import {
+  ActivityTypes,
+  TurnContext,
+}                 from 'botbuilder'
+import { log }    from 'wechaty'
 
-import { WechatyConnector } from '../src/wechaty-connector'
+import { WechatyAdapter } from '../src/wechaty-adapter'
 
-// Create wechaty connector
-const wechatyConnector = new WechatyConnector()
+export class EchoBot {
+  public async onTurn (
+    turnContext: TurnContext,
+  ): Promise<void> {
+    log.verbose('EchoBot', 'onTurn() %s', turnContext)
+    if (turnContext.activity.type === ActivityTypes.Message) {
+      const text = turnContext.activity.text
+      console.log('RECV:', text)
+      switch (text.toLowerCase()) {
+        case 'quit':
+          console.log('Quiting...')
+          process.exit(0)
+          break
 
-const bot = new builder.UniversalBot(wechatyConnector)
+        case 'ding':
+          await turnContext.sendActivity('dong')
+          break
 
-// Bot dialogs
-bot.dialog('/', [
-  (session) => {
-    if (session.userData && session.userData.name) {
-        /*
-        if (session.message.attachments &&
-          session.message.attachments.length > 0) {
-          var atm = session.message.attachments[0];
-          if (atm.contentType == connector.WechatAttachmentType.Image) {
-            var msg = new builder.Message(session).attachments([atm]);
-            session.send(msg);
-          }
-        }
-        */
-      session.send('How are you, ' + session.userData.name)
-    } else {
-      builder.Prompts.text(session, 'Whats your name?')
+        default:
+          log.info('EchoBot', 'onTurn() skip message "%s"', text)
+      }
     }
-  },
-  (session, results) => {
-    session.userData.name = results.response
-    session.send('OK, ' + session.userData.name)
-    builder.Prompts.text(session, 'Whats your age?')
-  },
-  (session, results) => {
-    session.userData.age = results.response
-    session.send('All right, ' + results.response)
-  },
-])
+  }
+}
 
-// Listen for messages from wechat personal account
-wechatyConnector.listen()
-.catch(console.error)
+const echoBot = new EchoBot()
+const adapter = new WechatyAdapter()
+adapter.listen(async (turnContext: TurnContext) => {
+  await echoBot.onTurn(turnContext)
+})
+
+console.log('> Wechaty EchoBot is online. I will reply `dong` if you send me `ding`!')
+console.log('> Say "quit" to end.\n')

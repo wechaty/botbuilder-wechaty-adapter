@@ -62,3 +62,4 @@ package-lock.json
 /dist/
 t/
 t.*
+*.memory-card.json

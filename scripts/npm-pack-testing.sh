@@ -2,7 +2,7 @@
 set -e
 
 npm run dist
-npm pack dist/
+npm run pack
 
 TMPDIR="/tmp/npm-pack-testing.$$"
 mkdir "$TMPDIR"
