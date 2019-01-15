@@ -7,7 +7,6 @@ import * as QrcodeTerminal  from 'qrcode-terminal'
 const VERSION: string = require('../package.json').version
 
 import {
-  Contact,
   Message,
   Wechaty,
 }                   from 'wechaty'
@@ -236,7 +235,7 @@ export class WechatyConnector implements builder.IConnector {
     for (let idx = 0; idx < messageList.length; idx++) {
       const msg = messageList[idx]
       try {
-        const wechatyContact = Contact.load(msg.address.user.id)
+        const wechatyContact = this.wechaty.Contact.load(msg.address.user.id)
         await wechatyContact.ready()
 
         if (msg.type === 'delay') {
