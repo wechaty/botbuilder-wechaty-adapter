@@ -7,7 +7,6 @@ import * as QrcodeTerminal  from 'qrcode-terminal'
 const VERSION: string = require('../package.json').version
 
 import {
-  Contact,
   Message,
   Wechaty,
 }                   from 'wechaty'
