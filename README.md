@@ -90,7 +90,7 @@ Upgrade to Microsoft BotBuilder v4
 
 1. Package name was rename to `botbuilder-wechaty-adapter` from `botbuilder-wechaty-connect` for following the v4 naming style.
 
-### v3.0 (Jan 11, 2018)
+### v3.0 (Jan 11, 2019)
 
 Release `botbuilder-wechaty-adapter@3.0` for BotBuilder v3
 
