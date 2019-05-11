@@ -35,7 +35,7 @@
   "homepage": "https://github.com/huan/botbuilder-wechaty-adapter#readme",
   "dependencies": {
     "qrcode-terminal": "^0.12.0",
-    "wechaty": "^0.23.38"
+    "wechaty": "^0.26.1"
   },
   "devDependencies": {
     "@types/blue-tape": "^0.1.31",
