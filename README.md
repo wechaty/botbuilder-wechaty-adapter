@@ -90,7 +90,7 @@ Upgrade to Microsoft BotBuilder v4
 
 1. Package name was rename to `botbuilder-wechaty-adapter` from `botbuilder-wechaty-connect` for following the v4 naming style.
 
-### v3.0 (Jan 11, 2019)
+### v3.0 Jan 11, 2019
 
 Release `botbuilder-wechaty-adapter@3.0` for BotBuilder v3
 
@@ -98,7 +98,7 @@ Release `botbuilder-wechaty-adapter@3.0` for BotBuilder v3
 1. Skip messages from other than a individual account(like official account, and SYS message)
 1. Refactoring all the code from `ConsoleConnector`
 
-### v0.0.1 (Apr 17, 2018)
+### v0.0.1 Apr 17, 2018
 
 1. Working with Wechaty Individual Text Messages.
 1. An example run by `npm run example`
