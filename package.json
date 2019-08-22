@@ -6,8 +6,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "clean": "shx rm -fr dist/*",
-    "dist": "npm run clean && tsc && npm run dist:version",
-    "dist:version": "echo exports.VERSION=$(jq .version package.json) > dist/src/version.js",
+    "dist": "npm run clean && tsc",
     "example": "ts-node examples/example.ts",
     "lint": "npm run lint:es",
     "pack": "npm pack",
