@@ -12,10 +12,8 @@ cp tests/fixtures/smoke-testing.ts "$TMPDIR"
 cd $TMPDIR
 npm init -y
 npm install *-*.*.*.tgz \
-  botbuilder \
-  brolog \
-  rxjs \
-  typescript
+  @chatie/tsconfig \
+  botbuilder
 
 ./node_modules/.bin/tsc \
   --lib esnext,dom \
