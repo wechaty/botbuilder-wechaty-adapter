@@ -111,7 +111,7 @@ Release `botbuilder-wechaty-adapter@3.0` for BotBuilder v3
 
 ## AUTHOR
 
-[Huan LI](http://linkedin.com/in/zixia) \<zixia@zixia.net\>, Microsoft [Regional Director](https://rd.microsoft.com/en-us/huan-li), [MVP](https://mvp.microsoft.com/en-us/PublicProfile/5003061).
+[Huan LI](http://linkedin.com/in/zixia) \<zixia@zixia.net\>, who is recognized as both [Microsoft Regional Director (RD)](https://rd.microsoft.com/en-us/huan-li) and [Microsoft Most Valuable Professional (MVP)](https://mvp.microsoft.com/en-us/PublicProfile/5003061) from Microsoft.
 
 <a href="https://stackexchange.com/users/265499">
   <img src="https://stackexchange.com/users/flair/265499.png" width="208" height="58" alt="profile for zixia on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for zixia on Stack Exchange, a network of free, community-driven Q&amp;A sites">
