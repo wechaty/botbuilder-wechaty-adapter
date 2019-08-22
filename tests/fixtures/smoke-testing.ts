@@ -10,4 +10,4 @@ if (version === '0.0.0') {
   throw new Error('Version number is not set.')
 }
 
-console.log(`botbuilder-wechaty-adapter v${adapter.version()} pack testing passed.`)
+console.info(`botbuilder-wechaty-adapter v${adapter.version()} pack testing passed.`)
