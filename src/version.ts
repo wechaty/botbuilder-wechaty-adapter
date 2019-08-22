@@ -1,6 +1,6 @@
 /**
- * It will be overwrite with run `npm run dist`
- * DO NOT MODIFY THIS FILE MANUALY
+ * This file will be overwrite when we publish NPM module
+ * by scripts/generate_version.ts
  */
 
-export const VERSION = '0.0.0' // a unknown version at here
+export const VERSION = '0.0.0'

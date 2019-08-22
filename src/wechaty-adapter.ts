@@ -5,13 +5,8 @@ import {
   ConversationReference,
   ResourceResponse,
   TurnContext,
-}                             from 'botbuilder'
-import * as QrcodeTerminal  from 'qrcode-terminal'
-
-// tslint:disable:no-console
-
-// tslint:disable-next-line:no-var-requires
-// const VERSION: string = require('../package.json').version
+}                            from 'botbuilder'
+import QrcodeTerminal         from 'qrcode-terminal'
 
 import {
   log,
@@ -31,6 +26,7 @@ export interface WechatyAdapterOptions {
 }
 
 export class WechatyAdapter extends BotAdapter {
+
   private readonly wechaty: Wechaty
 
   constructor (
@@ -43,17 +39,17 @@ export class WechatyAdapter extends BotAdapter {
     })
 
     this.wechaty
-    .on('logout'	, user => log.verbose('WechatyAdapter', `${user.name()} logouted`))
-    .on('login'	  , user => {
-      log.verbose('WechatyAdapter', `${user.name()} login`)
-      user.say('Wechaty login').catch(console.error)
-    })
-    .on('scan', (qrcode, status) => {
-      if (!/201|200/.test(String(status))) {
-        QrcodeTerminal.generate(qrcode, { small: true })
-        log.info(`${qrcode}\n[${status}] Scan QR Code above url to log in: `)
-      }
-    })
+      .on('logout', user => log.verbose('WechatyAdapter', `${user.name()} logouted`))
+      .on('login', user => {
+        log.verbose('WechatyAdapter', `${user.name()} login`)
+        user.say('Wechaty login').catch(console.error)
+      })
+      .on('scan', (qrcode, status) => {
+        if (!/201|200/.test(String(status))) {
+          QrcodeTerminal.generate(qrcode, { small: true })
+          log.info(`${qrcode}\n[${status}] Scan QR Code above url to log in: `)
+        }
+      })
 
   }
 
@@ -101,14 +97,14 @@ export class WechatyAdapter extends BotAdapter {
 
     const from = msg.from()
 
-    if (!from ) {
+    if (!from) {
       throw new Error('WechatyAdapter processMessage() discard message without a from contact: ' + msg)
     }
 
-    if (  msg.self()
-        || msg.room()
-        || (from && from.type() !== this.wechaty.Contact.Type.Personal)
-        || (msg.type() !== this.wechaty.Message.Type.Text)
+    if (msg.self()
+      || msg.room()
+      || (from && from.type() !== this.wechaty.Contact.Type.Personal)
+      || (msg.type() !== this.wechaty.Message.Type.Text)
     ) {
       log.verbose('WechatyAdapter', 'buildActivity(%s) message from self or room or not text, return null', msg)
       return null
@@ -120,13 +116,13 @@ export class WechatyAdapter extends BotAdapter {
     const reference = {
       bot: {
         id   : botUser.id,
-        name : botUser.name()
+        name : botUser.name(),
       },
       channelId: 'wechaty',
       conversation:  {
-        id      : room && room.id || 'conversation',
+        id      : (room && room.id) || 'conversation',
         isGroup : !!room,
-        name    : room && await room.topic() || 'Conversation',
+        name    : (room && await room.topic()) || 'Conversation',
       },
       serviceUrl: '',
       user: {
@@ -167,8 +163,8 @@ export class WechatyAdapter extends BotAdapter {
   }
 
   public async sendActivities (
-    context: TurnContext,
-    activities: Array<Partial<Activity>>,
+    _context   : TurnContext,
+    activities : Array<Partial<Activity>>,
   ): Promise<ResourceResponse[]> {
     const responses: ResourceResponse[] = []
     for (const activity of activities) {
@@ -219,15 +215,15 @@ export class WechatyAdapter extends BotAdapter {
   }
 
   public async updateActivity (
-    context  : TurnContext,
-    activity : Partial<Activity>,
+    _context  : TurnContext,
+    _activity : Partial<Activity>,
   ): Promise<void> {
     throw new Error('The method [updateActivity] is not supported by the Wechaty Adapter(yet).')
   }
 
   public async deleteActivity (
-    context   : TurnContext,
-    reference : Partial<ConversationReference>,
+    _context   : TurnContext,
+    _reference : Partial<ConversationReference>,
   ): Promise<void> {
     throw new Error('The method [deleteActivity] is not supported by the Wechaty Adapter(yet).')
   }

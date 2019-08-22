@@ -1,5 +1,3 @@
-// tslint:disable:no-console
-
 import {
   ActivityTypes,
   TurnContext,
@@ -9,23 +7,24 @@ import { log }    from 'wechaty'
 import { WechatyAdapter } from '../src/wechaty-adapter'
 
 export class EchoBot {
+
   public async onTurn (
     turnContext: TurnContext,
   ): Promise<void> {
     log.verbose('EchoBot', 'onTurn() %s', turnContext)
     if (turnContext.activity.type === ActivityTypes.Message) {
       const text = turnContext.activity.text
-      console.log('RECV:', text)
+      console.info('RECV:', text)
       switch (text.toLowerCase()) {
         case 'quit':
-          console.log('Quiting...')
+          console.info('Quiting...')
           process.exit(0)
           break
 
         case 'ding':
-          console.log('Replying `dong`...')
+          console.info('Replying `dong`...')
           await turnContext.sendActivity('dong')
-          console.log('Replied.')
+          console.info('Replied.')
           break
 
         default:
@@ -33,6 +32,7 @@ export class EchoBot {
       }
     }
   }
+
 }
 
 const echoBot = new EchoBot()
@@ -41,5 +41,5 @@ adapter.listen(async (turnContext: TurnContext) => {
   await echoBot.onTurn(turnContext)
 }).catch(console.error)
 
-console.log('> Wechaty EchoBot is online. I will reply `dong` if you send me `ding`!')
-console.log('> Say "quit" to end.\n')
+console.info('> Wechaty EchoBot is online. I will reply `dong` if you send me `ding`!')
+console.info('> Say "quit" to end.\n')
