@@ -1,6 +1,7 @@
 # BOTBUILDER-WECHATY-ADAPTER
 
 [![npm version](https://badge.fury.io/js/botbuilder-wechaty-adapter.svg)](https://badge.fury.io/js/botbuilder-wechaty-adapter)
+[![npm (tag)](https://img.shields.io/npm/v/botbuilder-wechaty-adapter/next.svg)](https://www.npmjs.com/package/botbuilder-wechaty-adapter?activeTab=versions)
 [![Powered by Wechaty](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/chatie/wechaty)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-blue.svg)](https://www.typescriptlang.org/)
 [![Greenkeeper badge](https://badges.greenkeeper.io/huan/botbuilder-wechaty-adapter.svg)](https://greenkeeper.io/)
