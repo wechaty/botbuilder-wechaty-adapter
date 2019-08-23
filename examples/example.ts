@@ -2,7 +2,6 @@ import {
   ActivityTypes,
   TurnContext,
 }                 from 'botbuilder'
-import { log }    from 'wechaty'
 
 import { WechatyAdapter } from '../src/wechaty-adapter'
 
@@ -11,7 +10,7 @@ export class EchoBot {
   public async onTurn (
     turnContext: TurnContext,
   ): Promise<void> {
-    log.verbose('EchoBot', 'onTurn() %s', turnContext)
+    console.info('EchoBot', 'onTurn() %s', turnContext)
     if (turnContext.activity.type === ActivityTypes.Message) {
       const text = turnContext.activity.text
       console.info('RECV:', text)
@@ -28,7 +27,7 @@ export class EchoBot {
           break
 
         default:
-          log.info('EchoBot', 'onTurn() skip message "%s"', text)
+          console.info('EchoBot', 'onTurn() skip message "%s"', text)
       }
     }
   }
